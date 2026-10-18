@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KAMAKIRI | Fashion Stylist — Tokyo</title>
+<meta name="description" content="東京を拠点に活動するファッションスタイリスト KAMAKIRI のポートフォリオ。スタイリング・リース・企画段階からのご相談を承ります。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /*
+    ==========================================================
+    差し替えメモ
+    - 文章の【仮】表示は外しましたが、本文・作品タイトル・プロジェクト名などは仮の内容です。
+    - .ph（グレーの枠）は仮の写真枠です。<img src="..."> に差し替えてください。
+    - Instagram URL は https://www.instagram.com/door_programming/ に設定済み（4か所）。
+    ==========================================================
+  */
+  :root {
+    /* 黒背景・白文字 */
+    --bg: #111111;
+    --ink: #ffffff;
+    --sub: #9a9a9a;
+    --line: #2e2e2e;
+    --ph: #222222;
+    --gutter: clamp(16px, 4vw, 48px);
+    --max: 1280px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .en { font-family: "Cormorant Garamond", serif; letter-spacing: 0.12em; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  .tmp { color: var(--sub); font-size: 11px; white-space: nowrap; }
+
+  /* 仮写真枠 */
+  .ph {
+    position: relative;
+    background: var(--ph);
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    color: #6b6b6b;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(17,17,17,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-in {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .logo { font-size: 20px; font-weight: 500; letter-spacing: 0.28em; }
+  nav ul { display: flex; gap: 28px; list-style: none; align-items: center; }
+  nav a { font-size: 11px; letter-spacing: 0.18em; }
+  nav a:hover { opacity: 0.55; }
+  .nav-cta {
+    border: 1px solid var(--ink); padding: 7px 16px;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--bg); opacity: 1 !important; }
+  .menu-btn {
+    display: none;
+    background: none; border: 0; cursor: pointer;
+    width: 44px; height: 44px; margin-right: -10px;
+    font: inherit; font-size: 11px; letter-spacing: 0.18em; color: var(--ink);
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-block;
+    padding: 15px 38px;
+    font-size: 11px; font-weight: 400; letter-spacing: 0.24em;
+    border: 1px solid var(--ink);
+    transition: background .2s, color .2s;
+  }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-dark:hover { background: #fff; color: var(--ink); }
+  .btn-light { background: #fff; color: var(--bg); border-color: #fff; }
+  .btn-light:hover { background: transparent; color: #fff; }
+  .btn-lg { padding: 22px 57px; font-size: 16px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    height: calc(100svh - 60px);
+    min-height: 520px;
+  }
+  .hero img { object-position: 78% center; } /* スマホで縦長に切り取っても右側の人物が残るように */
+  .hero-text {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 0 var(--gutter) clamp(40px, 8vh, 80px);
+    color: #fff;
+    max-width: var(--max); margin: 0 auto;
+  }
+  .hero-title { font-size: clamp(40px, 8vw, 84px); font-weight: 400; line-height: 1; letter-spacing: 0.2em; }
+  .hero-role { font-size: 12px; letter-spacing: 0.3em; margin: 14px 0 30px; }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: clamp(72px, 11vw, 140px) 0 0; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 18px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 12px; margin-bottom: 36px;
+  }
+  .sec-head h2 { font-size: 22px; font-weight: 500; letter-spacing: 0.3em; }
+  .sec-head span { font-size: 11px; color: var(--sub); }
+  .lead { max-width: 560px; color: #ccc; margin-bottom: 40px; }
+
+  /* ---------- Works ---------- */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px 24px;
+  }
+  .work .media { aspect-ratio: 3 / 4; overflow: hidden; }
+  .work.wide { grid-column: span 2; }
+  .work.wide .media { aspect-ratio: auto; height: calc(100% - 48px); min-height: 0; }
+  .work.wide { display: flex; flex-direction: column; }
+  .work-meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 11px; }
+  .work-meta .cat { color: var(--sub); letter-spacing: 0.14em; }
+
+  /* ---------- Projects ---------- */
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 5vw, 72px);
+    padding: 40px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .project:first-of-type { padding-top: 0; }
+  .project .media { aspect-ratio: 4 / 3; }
+  .project .media img { object-position: center 15%; } /* 縦長写真の顔が切れないよう上寄りに表示 */
+  .project-no { font-size: 11px; color: var(--sub); letter-spacing: 0.2em; }
+  .project h3 { font-size: 15px; font-weight: 500; letter-spacing: 0.1em; margin: 6px 0 4px; }
+  .project .client { font-size: 11px; color: var(--sub); margin-bottom: 22px; }
+  .project dl { display: grid; grid-template-columns: 8em 1fr; gap: 12px 16px; }
+  .project dt { font-size: 14px; letter-spacing: 0.14em; font-weight: 500; padding-top: 2px; }
+  .project dd { color: #ccc; }
+
+  /* ---------- Services ---------- */
+  .services { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .service { padding: 32px 28px 36px 0; border-bottom: 1px solid var(--line); }
+  .service + .service { padding-left: 28px; border-left: 1px solid var(--line); }
+  .service .num { font-size: 13px; color: var(--sub); }
+  .service h3 { font-size: 14px; font-weight: 500; margin: 10px 0 2px; letter-spacing: 0.08em; }
+  .service .en-sub { font-size: 12px; color: var(--sub); margin-bottom: 16px; }
+  .service ul { list-style: none; margin-top: 14px; font-size: 12px; color: #bbb; }
+  .service li::before { content: "— "; color: var(--sub); }
+
+  /* ---------- About ---------- */
+  .about { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(28px, 6vw, 88px); align-items: start; }
+  .about .media { aspect-ratio: 4 / 5; }
+  .about-name { font-size: 22px; font-weight: 400; letter-spacing: 0.24em; }
+  .about-role { font-size: 11px; color: var(--sub); letter-spacing: 0.2em; margin: 4px 0 28px; }
+  .about dl { display: grid; grid-template-columns: 8em 1fr; gap: 18px 20px; border-top: 1px solid var(--line); padding-top: 24px; }
+  .about dt { font-size: 14px; font-weight: 500; letter-spacing: 0.14em; padding-top: 2px; }
+  .about dd { color: #ccc; }
+
+  /* ---------- Contact ---------- */
+  .contact {
+    margin-top: clamp(80px, 12vw, 160px);
+    background: var(--bg); color: #fff;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    padding: clamp(72px, 11vw, 130px) var(--gutter);
+  }
+  .contact .label { font-size: 22px; letter-spacing: 0.3em; color: #9a9a9a; }
+  .contact h2 { font-size: clamp(18px, 2.4vw, 24px); font-weight: 400; letter-spacing: 0.12em; margin: 18px 0 14px; }
+  .contact p { color: #cfcfcf; margin-bottom: 36px; }
+  .contact .ig { display: block; margin-top: 22px; font-size: 11px; color: #9a9a9a; letter-spacing: 0.16em; }
+  .contact .ig:hover { color: #fff; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 48px 0 40px; }
+  .footer-in { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  .footer-in .logo { font-size: 18px; }
+  .footer-in .base { font-size: 11px; letter-spacing: 0.22em; color: var(--sub); margin-top: 4px; }
+  .sns { display: flex; gap: 22px; list-style: none; font-size: 11px; letter-spacing: 0.16em; }
+  .sns a:hover { opacity: 0.55; }
+  .copy { font-size: 10px; color: var(--sub); margin-top: 32px; letter-spacing: 0.12em; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .works-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 16px; }
+    .work.wide { grid-column: span 2; }
+    .work.wide .media { aspect-ratio: 16 / 10; height: auto; }
+    .services { grid-template-columns: 1fr; }
+    .service, .service + .service { padding: 28px 0; border-left: 0; }
+  }
+  @media (max-width: 720px) {
+    .menu-btn { display: block; }
+    nav {
+      position: absolute; top: 60px; left: 0; right: 0;
+      background: var(--bg); border-bottom: 1px solid var(--line);
+      display: none;
+    }
+    nav.open { display: block; }
+    nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--gutter) 20px; }
+    nav li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+    nav li:last-child a { border-bottom: 0; }
+    .nav-cta { text-align: center; margin-top: 16px; padding: 14px 0 !important; border: 1px solid var(--ink) !important; }
+
+    .project, .about { grid-template-columns: 1fr; }
+    .project dl, .about dl { grid-template-columns: 1fr; gap: 4px; }
+    .project dd, .about dd { margin-bottom: 12px; }
+    .project .media, .about .media { width: 85%; margin: 0 auto; } /* スマホで写真を0.85倍に */
+    .footer-in { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 480px) {
+    .works-grid { grid-template-columns: 1fr; }
+    .work.wide { grid-column: auto; }
+    .work.wide .media { aspect-ratio: 3 / 4; }
+    .work { width: 85%; margin: 0 auto; } /* スマホで写真を0.85倍に（作品名・カテゴリーも写真幅に合わせる） */
+    .btn { width: 100%; max-width: 320px; text-align: center; }
+    .btn-lg { max-width: none; padding: 22px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ① HEADER -->
+<header>
+  <div class="wrap header-in">
+    <a href="#top" class="logo en" aria-label="KAMAKIRI トップへ">KAMAKIRI</a>
+    <button class="menu-btn en" id="menuBtn" aria-expanded="false" aria-controls="gnav">MENU</button>
+    <nav id="gnav" aria-label="ページ内メニュー">
+      <ul>
+        <li><a href="#works" class="en">WORKS</a></li>
+        <li><a href="#projects" class="en">PROJECTS</a></li>
+        <li><a href="#services" class="en">SERVICES</a></li>
+        <li><a href="#about" class="en">ABOUT</a></li>
+        <li><a href="#contact" class="en nav-cta">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ② FIRST VIEW -->
+  <section class="hero" aria-label="ファーストビュー">
+    <!-- メイン作品写真 -->
+    <img src="images/hero.webp" alt="KAMAKIRI スタイリング作品 メインビジュアル">
+    <div class="hero-text">
+      <h1 class="hero-title en">KAMAKIRI</h1>
+      <p class="hero-role en">FASHION STYLIST — TOKYO</p>
+      <!-- Instagram URL（CTA文言：JUMP TO INSTAGRAM） -->
+      <a href="https://www.instagram.com/door_programming/" target="_blank" rel="noopener" class="btn btn-light btn-lg en">JUMP TO INSTAGRAM</a>
+    </div>
+  </section>
+
+  <!-- ③ WORKS -->
+  <section class="block" id="works">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="en">WORKS</h2><span>作品一覧</span></div>
+      <div class="works-grid">
+        <article class="work wide">
+          <div class="media"><img src="images/work01.png" alt="WORKS 01 スタイリング作品" loading="lazy"></div>
+          <div class="work-meta"><span>作品タイトル</span><span class="cat en">EDITORIAL</span></div>
+        </article>
+        <article class="work">
+          <div class="media"><img src="images/work02.png" alt="WORKS 02 スタイリング作品" loading="lazy"></div>
+          <div class="work-meta"><span>作品タイトル</span><span class="cat en">LOOKBOOK</span></div>
+        </article>
+        <article class="work">
+          <div class="media"><img src="images/work03.png" alt="WORKS 03 スタイリング作品" loading="lazy"></div>
+          <div class="work-meta"><span>作品タイトル</span><span class="cat en">ADVERTISING</span></div>
+        </article>
+        <article class="work">
+          <div class="media"><img src="images/work04.png" alt="WORKS 04 スタイリング作品" loading="lazy"></div>
+          <div class="work-meta"><span>作品タイトル</span><span class="cat en">ARTIST</span></div>
+        </article>
+        <article class="work">
+          <div class="media"><img src="images/work05.png" alt="WORKS 05 スタイリング作品" loading="lazy"></div>
+          <div class="work-meta"><span>作品タイトル</span><span class="cat en">EDITORIAL</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ PROJECTS -->
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="en">PROJECTS</h2><span>実績・制作背景</span></div>
+      <p class="lead">一つひとつの仕事で、何を考え、どう動いたか。制作の背景から、ご自身の企画との相性をご覧ください。</p>
+
+      <article class="project">
+        <div class="media"><img src="images/project01.webp" alt="PROJECT 01 スタイリング作品" loading="lazy"></div>
+        <div>
+          <p class="project-no en">PROJECT 01</p>
+          <h3>プロジェクト名</h3>
+          <p class="client">ブランド名／クライアント名・カテゴリー</p>
+          <dl>
+            <dt class="en">CONCEPT</dt>
+            <dd>企画の狙いと、スタイリングで表現しようとしたこと。</dd>
+            <dt class="en">APPROACH</dt>
+            <dd>ブランドの世界観に合わせて工夫した点（素材感・色・シルエットなど）。</dd>
+            <dt class="en">ACTION</dt>
+            <dd>リサーチ、リース手配、撮影当日の調整など、実際に取った行動。</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="media"><img src="images/project02.webp" alt="PROJECT 02 スタイリング作品" loading="lazy"></div>
+        <div>
+          <p class="project-no en">PROJECT 02</p>
+          <h3>プロジェクト名</h3>
+          <p class="client">ブランド名／クライアント名・カテゴリー</p>
+          <dl>
+            <dt class="en">CONCEPT</dt>
+            <dd>企画の狙いと、スタイリングで表現しようとしたこと。</dd>
+            <dt class="en">APPROACH</dt>
+            <dd>ブランドの世界観に合わせて工夫した点。</dd>
+            <dt class="en">ACTION</dt>
+            <dd>制作の中で実際に取った行動。</dd>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ⑤ SERVICES -->
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="en">SERVICES</h2><span>サービス内容</span></div>
+      <div class="services">
+        <div class="service">
+          <p class="num en">01</p>
+          <h3>服の着付け・調整</h3>
+          <p class="en-sub en">FITTING &amp; STYLING</p>
+          <p>撮影・イベント当日の着付けから、サイズやシルエットの微調整まで対応します。</p>
+          <ul>
+            <li>撮影現場での着付け</li>
+            <li>丈・シルエットの調整</li>
+          </ul>
+        </div>
+        <div class="service">
+          <p class="num en">02</p>
+          <h3>服・アクセサリーの貸し出し</h3>
+          <p class="en-sub en">WARDROBE &amp; ACCESSORY RENTAL</p>
+          <p>企画のイメージに合わせて、衣装やアクセサリーを選定・ご用意します。</p>
+          <ul>
+            <li>衣装・小物の選定</li>
+            <li>リース手配・返却管理</li>
+          </ul>
+        </div>
+        <div class="service">
+          <p class="num en">03</p>
+          <h3>企画段階からの相談</h3>
+          <p class="en-sub en">CREATIVE CONSULTATION</p>
+          <p>コンセプトづくりやビジュアルの方向性など、企画の初期段階からご一緒します。</p>
+          <ul>
+            <li>コンセプト・トーンの整理</li>
+            <li>スタイリング案のご提案</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ ABOUT -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="en">ABOUT</h2><span>プロフィール</span></div>
+      <div class="about">
+        <!-- プロフィール写真 -->
+        <div class="media"><img src="images/profile.webp" alt="KAMAKIRI プロフィール写真" loading="lazy"></div>
+        <div>
+          <p class="about-name en">KAMAKIRI</p>
+          <p class="about-role en">FASHION STYLIST</p>
+          <dl>
+            <dt class="en">BASE</dt>
+            <dd>東京</dd>
+            <dt class="en">STYLING</dt>
+            <dd>服そのものだけでなく、着る人の個性や企画の目的が自然に伝わることを大切にしています。</dd>
+            <dt class="en">ATTITUDE</dt>
+            <dd>依頼者の意図を丁寧に汲み取り、細部まで責任を持って仕上げることを心がけています。</dd>
+            <dt class="en">PROFILE</dt>
+            <dd>経歴・活動内容をここに記載します。</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ CONTACT -->
+  <section class="contact" id="contact">
+    <p class="label en">CONTACT</p>
+    <h2>スタイリングのご依頼・ご相談はこちら</h2>
+    <p>企画段階からでもお気軽にご相談ください。<br>InstagramのDMにてご連絡をお待ちしております。</p>
+    <!-- Instagram URL（CTA文言：JUMP TO INSTAGRAM） -->
+    <a href="https://www.instagram.com/door_programming/" target="_blank" rel="noopener" class="btn btn-light btn-lg en">JUMP TO INSTAGRAM</a>
+    <a href="https://www.instagram.com/door_programming/" target="_blank" rel="noopener" class="ig en">INSTAGRAM @door_programming</a>
+  </section>
+</main>
+
+<!-- ⑧ FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-in">
+      <div>
+        <a href="#top" class="logo en">KAMAKIRI</a>
+        <p class="base en">FASHION STYLIST — TOKYO</p>
+      </div>
+      <ul class="sns en">
+        <li><a href="https://www.instagram.com/door_programming/" target="_blank" rel="noopener">INSTAGRAM</a></li>
+        <!-- その他のSNSがあればここに追加 -->
+      </ul>
+    </div>
+    <p class="copy en">&copy; KAMAKIRI</p>
+  </div>
+</footer>
+
+<script>
+  // スマホ用メニュー開閉
+  const btn = document.getElementById('menuBtn');
+  const nav = document.getElementById('gnav');
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? 'CLOSE' : 'MENU';
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = 'MENU';
+  }));
+</script>
+</body>
+</html>
