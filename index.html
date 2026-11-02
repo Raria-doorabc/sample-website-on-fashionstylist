@@ -144,21 +144,23 @@
   }
   .work .media { aspect-ratio: 3 / 4; overflow: hidden; }
   .work.wide { grid-column: span 2; }
-  .work.wide .media { aspect-ratio: auto; height: calc(100% - 48px); min-height: 0; }
+  /* 横長の写真は隣の縦長写真と同じ高さに自動で合わせる（作品名の行がそろう） */
   .work.wide { display: flex; flex-direction: column; }
+  .work.wide .media { aspect-ratio: auto; flex: 1; min-height: 0; position: relative; }
+  .work.wide .media img { position: absolute; inset: 0; }
   .work-meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 11px; }
   .work-meta .cat { color: var(--sub); letter-spacing: 0.14em; }
 
   /* ---------- Projects ---------- */
   .project {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(24px, 5vw, 72px);
+    grid-template-columns: repeat(3, 1fr); /* WORKSと同じ3列の線にそろえる：写真2列分＋文章1列分 */
+    gap: 24px;
     padding: 40px 0;
     border-bottom: 1px solid var(--line);
   }
   .project:first-of-type { padding-top: 0; }
-  .project .media { aspect-ratio: 4 / 3; }
+  .project .media { aspect-ratio: 4 / 3; grid-column: span 2; }
   .project .media img { object-position: center 15%; } /* 縦長写真の顔が切れないよう上寄りに表示 */
   .project-no { font-size: 11px; color: var(--sub); letter-spacing: 0.2em; }
   .project h3 { font-size: 15px; font-weight: 500; letter-spacing: 0.1em; margin: 6px 0 4px; }
@@ -168,9 +170,8 @@
   .project dd { color: #ccc; }
 
   /* ---------- Services ---------- */
-  .services { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
-  .service { padding: 32px 28px 36px 0; border-bottom: 1px solid var(--line); }
-  .service + .service { padding-left: 28px; border-left: 1px solid var(--line); }
+  .services { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 24px; border-top: 1px solid var(--line); } /* WORKSと同じ3列の線にそろえる */
+  .service { padding: 32px 0 36px; border-bottom: 1px solid var(--line); }
   .service .num { font-size: 13px; color: var(--sub); }
   .service h3 { font-size: 14px; font-weight: 500; margin: 10px 0 2px; letter-spacing: 0.08em; }
   .service .en-sub { font-size: 12px; color: var(--sub); margin-bottom: 16px; }
@@ -178,7 +179,8 @@
   .service li::before { content: "— "; color: var(--sub); }
 
   /* ---------- About ---------- */
-  .about { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(28px, 6vw, 88px); align-items: start; }
+  .about { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; } /* WORKSと同じ3列の線にそろえる：写真1列分＋文章2列分 */
+  .about > div:last-child { grid-column: span 2; }
   .about .media { aspect-ratio: 4 / 5; }
   .about-name { font-size: 22px; font-weight: 400; letter-spacing: 0.24em; }
   .about-role { font-size: 11px; color: var(--sub); letter-spacing: 0.2em; margin: 4px 0 28px; }
@@ -191,8 +193,7 @@
     margin-top: clamp(80px, 12vw, 160px);
     background: var(--bg); color: #fff;
     border-top: 1px solid var(--line);
-    text-align: center;
-    padding: clamp(72px, 11vw, 130px) var(--gutter);
+    padding: clamp(72px, 11vw, 130px) 0; /* 中央そろえをやめ、他のセクションと同じ左の線にそろえる */
   }
   .contact .label { font-size: 22px; letter-spacing: 0.3em; color: #9a9a9a; }
   .contact h2 { font-size: clamp(18px, 2.4vw, 24px); font-weight: 400; letter-spacing: 0.12em; margin: 18px 0 14px; }
@@ -213,9 +214,12 @@
   @media (max-width: 900px) {
     .works-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 16px; }
     .work.wide { grid-column: span 2; }
-    .work.wide .media { aspect-ratio: 16 / 10; height: auto; }
+    .work.wide .media { aspect-ratio: 16 / 10; flex: none; }
     .services { grid-template-columns: 1fr; }
-    .service, .service + .service { padding: 28px 0; border-left: 0; }
+    .service { padding: 28px 0; }
+    /* タブレット：WORKSと同じ2列の線にそろえる */
+    .project, .about { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
+    .project .media, .about > div:last-child { grid-column: auto; }
   }
   @media (max-width: 720px) {
     .menu-btn { display: block; }
@@ -231,16 +235,17 @@
     .nav-cta { text-align: center; margin-top: 16px; padding: 14px 0 !important; border: 1px solid var(--ink) !important; }
 
     .project, .about { grid-template-columns: 1fr; }
+    .project .media, .about > div:last-child { grid-column: auto; }
     .project dl, .about dl { grid-template-columns: 1fr; gap: 4px; }
     .project dd, .about dd { margin-bottom: 12px; }
-    .project .media, .about .media { width: 85%; margin: 0 auto; } /* スマホで写真を0.85倍に */
+    .project .media, .about .media { width: 85%; margin: 0; } /* スマホで写真を0.85倍に（左端を文字にそろえる） */
     .footer-in { flex-direction: column; align-items: flex-start; }
   }
   @media (max-width: 480px) {
     .works-grid { grid-template-columns: 1fr; }
     .work.wide { grid-column: auto; }
     .work.wide .media { aspect-ratio: 3 / 4; }
-    .work { width: 85%; margin: 0 auto; } /* スマホで写真を0.85倍に（作品名・カテゴリーも写真幅に合わせる） */
+    .work { width: 85%; margin: 0; } /* スマホで写真を0.85倍に（作品名・カテゴリーも写真幅に合わせる。左端を文字にそろえる） */
     .btn { width: 100%; max-width: 320px; text-align: center; }
     .btn-lg { max-width: none; padding: 22px 0; }
   }
@@ -416,12 +421,14 @@
 
   <!-- ⑦ CONTACT -->
   <section class="contact" id="contact">
+   <div class="wrap">
     <p class="label en">CONTACT</p>
     <h2>スタイリングのご依頼・ご相談はこちら</h2>
     <p>企画段階からでもお気軽にご相談ください。<br>InstagramのDMにてご連絡をお待ちしております。</p>
     <!-- Instagram URL（CTA文言：JUMP TO INSTAGRAM） -->
     <a href="https://www.instagram.com/door_programming/" target="_blank" rel="noopener" class="btn btn-light btn-lg en">JUMP TO INSTAGRAM</a>
     <a href="https://www.instagram.com/door_programming/" target="_blank" rel="noopener" class="ig en">INSTAGRAM @door_programming</a>
+   </div>
   </section>
 </main>
 
