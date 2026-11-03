@@ -38,7 +38,7 @@
     --sub: #9a9a9a;
     --line: #2e2e2e;
     --ph: #222222;
-    /* ボタン共通（色と角丸はここだけで決める）。写真の色を邪魔しないよう、色は足さず白にする */
+    /* ボタン共通（色と角丸はここだけで決める）。白いボタン・黒い文字 */
     --btn-bg: #ffffff;
     --btn-ink: #111111;
     --btn-hover: #d9d9d9;
@@ -89,13 +89,8 @@
   nav ul { display: flex; gap: 28px; list-style: none; align-items: center; }
   nav a { font-size: 11px; letter-spacing: 0.18em; }
   nav a:hover { opacity: 0.55; }
-  /* ヘッダーのCONTACTも、ボタンと同じ白・同じ角丸（小さいサイズ） */
-  .nav-cta {
-    background: var(--btn-bg); color: var(--btn-ink);
-    border-radius: var(--btn-radius);
-    padding: 7px 18px; font-weight: 500;
-  }
-  .nav-cta:hover { background: var(--btn-hover); opacity: 1 !important; }
+  /* ヘッダーのCONTACTは控えめに：ボタンにせず、ほかのメニューと同じ文字だけにする（主役はCTAボタンだけ） */
+  .nav-cta { color: var(--ink); }
   .menu-btn {
     display: none;
     background: none; border: 0; cursor: pointer;
@@ -104,7 +99,7 @@
   }
 
   /* ---------- Buttons ---------- */
-  /* ボタンはページ全体で「白・黒文字・丸い角」の1種類だけ（反復） */
+  /* ボタンはページ全体で「白・黒文字・四角」の1種類だけ（反復） */
   .btn {
     display: inline-block;
     padding: 15px 38px;
@@ -114,8 +109,12 @@
     transition: background .2s;
   }
   .btn:hover { background: var(--btn-hover); }
-  /* 注文ボタン（JUMP TO INSTAGRAM）：ページで一番大きいボタン（対比） */
-  .btn-lg { padding: 26px 72px; font-size: 19px; letter-spacing: 0.2em; box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+  /* CTAボタン（JUMP TO INSTAGRAM）：写真の次の主役。思い切って大きく、太く */
+  .btn-lg {
+    padding: 34px 96px;
+    font-size: 26px; letter-spacing: 0.18em;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+  }
 
   /* ---------- Hero ---------- */
   .hero {
@@ -130,8 +129,8 @@
     color: #fff;
     max-width: var(--max); margin: 0 auto;
   }
-  .hero-title { font-size: clamp(40px, 8vw, 84px); font-weight: 400; line-height: 1; letter-spacing: 0.2em; }
-  .hero-role { font-size: 12px; letter-spacing: 0.3em; margin: 14px 0 30px; }
+  .hero-title { font-size: clamp(32px, 5.5vw, 60px); font-weight: 400; line-height: 1; letter-spacing: 0.2em; } /* 控えめに：ボタンを主役にするため小さく */
+  .hero-role { font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.8); margin: 14px 0 32px; }
 
   /* ---------- Sections ---------- */
   section.block { padding: clamp(72px, 11vw, 140px) 0 0; }
@@ -140,7 +139,7 @@
     border-bottom: 1px solid var(--ink);
     padding-bottom: 12px; margin-bottom: 36px;
   }
-  .sec-head h2 { font-size: 22px; font-weight: 500; letter-spacing: 0.3em; }
+  .sec-head h2 { font-size: 18px; font-weight: 500; letter-spacing: 0.3em; } /* 控えめに */
   .sec-head span { font-size: 11px; color: var(--sub); }
   .lead { max-width: 560px; color: #ccc; margin-bottom: 40px; }
 
@@ -203,10 +202,11 @@
     border-top: 1px solid var(--line);
     padding: clamp(72px, 11vw, 130px) 0; /* 中央そろえをやめ、他のセクションと同じ左の線にそろえる */
   }
-  .contact .label { font-size: 22px; letter-spacing: 0.3em; color: #9a9a9a; }
-  .contact h2 { font-size: clamp(18px, 2.4vw, 24px); font-weight: 400; letter-spacing: 0.12em; margin: 18px 0 14px; }
-  .contact p { color: #cfcfcf; margin-bottom: 36px; }
-  .contact .ig { display: block; margin-top: 22px; font-size: 11px; color: #9a9a9a; letter-spacing: 0.16em; }
+  /* 控えめに：見出しや説明は小さく・薄くして、CTAボタンを主役にする */
+  .contact .label { font-size: 14px; letter-spacing: 0.3em; color: #9a9a9a; }
+  .contact h2 { font-size: clamp(16px, 1.8vw, 18px); font-weight: 400; letter-spacing: 0.12em; margin: 14px 0 10px; }
+  .contact p { color: #aaa; margin-bottom: 44px; }
+  .contact .ig { display: block; margin-top: 24px; font-size: 11px; color: #7a7a7a; letter-spacing: 0.16em; }
   .contact .ig:hover { color: #fff; }
 
   /* ---------- Footer ---------- */
@@ -240,7 +240,6 @@
     nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--gutter) 20px; }
     nav li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
     nav li:last-child a { border-bottom: 0; }
-    .nav-cta { text-align: center; margin-top: 16px; padding: 14px 0 !important; border-bottom: 0 !important; }
 
     .project, .about { grid-template-columns: 1fr; }
     .project .media, .about > div:last-child { grid-column: auto; }
@@ -255,7 +254,7 @@
     .work.wide .media { aspect-ratio: 3 / 4; }
     .work { width: 85%; margin: 0; } /* スマホで写真を0.85倍に（作品名・カテゴリーも写真幅に合わせる。左端を文字にそろえる） */
     .btn { width: 100%; max-width: 320px; text-align: center; }
-    .btn-lg { max-width: none; padding: 24px 0; font-size: 17px; }
+    .btn-lg { max-width: none; padding: 28px 0; font-size: 21px; }
   }
 </style>
 </head>
